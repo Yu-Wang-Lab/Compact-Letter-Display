@@ -19,6 +19,8 @@ responseList = names(desired_data)[-1]     # Generating a list of chemical names
 
 # Taking the anova of all chemicals in the chemical names list.
 desired_data$Species = as.factor(desired_data$Species)     # The species must be a factor for this to work.
+
+# anova
 modelList = lapply(responseList, function(resp){
   mF = formula(paste(resp, '~ Species'))
   aov(mF, data = desired_data)
