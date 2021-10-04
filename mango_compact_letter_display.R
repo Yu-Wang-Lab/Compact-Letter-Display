@@ -5,11 +5,14 @@
 #                                                                             #
 ###############################################################################
 
+#### Make sure you are in the right directory. ###
+
+
 # Must have in-order to perform the tests.
 if (!require('multcomp')) install.packages('multcomp'); library('multcomp')
 
 # Loading in the data                    #########################################
-desired_data = read.csv('mango.csv')     # Change the name of the data file here.#
+desired_data = read.csv('Example_data.csv')     # Change the name of the data file here.#
                                          #########################################
 
 responseList = names(desired_data)[-1]     # Generating a list of chemical names.
