@@ -8,8 +8,11 @@ You should remove the TR information and leave the BR information in the datafra
 The data should be converted as follows.
 
 Glenn BR1 TR1 ---> Glenn BR1
+
 Glenn BR1 TR2 ---> Glenn BR1
+
 Glenn BR1 TR3 ---> Glenn BR1
+
 Glenn BR2 TR1 ---> Glenn BR1
 
 In addition, there may be some issues if the titles of columns have any special characters in them. Things such as:
