@@ -13,7 +13,7 @@ Glenn BR1 TR2 ---> Glenn BR1
 
 Glenn BR1 TR3 ---> Glenn BR1
 
-Glenn BR2 TR1 ---> Glenn BR1
+Glenn BR2 TR1 ---> Glenn BR2
 
 In addition, there may be some issues if the titles of columns have any special characters in them. Things such as:
 blank spaces, parenthesis, commas, mathematical symbols (+, -, etc.), slashes, and maybe periods.
