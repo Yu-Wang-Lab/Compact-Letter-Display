@@ -15,24 +15,30 @@ if (!require('multcomp')) install.packages('multcomp'); library('multcomp')
 desired_data = read.csv('Example_data.csv')     # Change the name of the data file here.#
                                          #########################################
 
-responseList = names(desired_data)[-1]     # Generating a list of chemical names.
+# Convert "Species" to a factor
+desired_data$Species <- as.factor(desired_data$Species)
+# Generate a list of names to be tested with ANOVA.
+measurements = names(desired_data)[-1]     # "Species" must be in the first column.
 
-# Taking the anova of all chemicals in the chemical names list.
-desired_data$Species = as.factor(desired_data$Species)     # The species must be a factor for this to work.
-
-# anova
-modelList = lapply(responseList, function(resp){
-  mF = formula(paste(resp, '~ Species'))
-  aov(mF, data = desired_data)
-})
-
-# Applying a tukey test to all chemical anovas.
-data_tukey_all = lapply(modelList, glht, linfct = mcp(Species = 'Tukey'))
-
-# Generating a compact letter display output for all chemicals between the species.
-data_cld_all = lapply(data_tukey_all, cld)
-names(data_cld_all) <- c(responseList)     # Naming the list to have all chemicals.
-print(data_cld_all)
+# Loop through each measurement
+for (measure in measurements) {
+  # Create the formula
+  formula <- as.formula(paste(measure, "~ Species"))
+  
+  # Perform one-way ANOVA
+  model <- aov(formula, data = desired_data)
+  
+  # Perform pairwise comparisons
+  comp <- glht(model, linfct = mcp(Species = "Tukey"))
+  
+  # Create compact letter display
+  cld_results <- cld(comp)
+  
+  # Print the results
+  cat(paste("Compact letter display for", measure, ":\n"))
+  print(cld_results)
+  cat("\n")
+}
 
 
 ###############################################################################
